@@ -6,7 +6,7 @@ const initialState = {
   isMember: true,
 };
 import Wrapper from "../assets/wrappers/RegisterPage";
-import { FormRow, Logo } from "../assets/components";
+import { FormRow, Logo } from "../components";
 import { useState } from "react";
 const Register = () => {
   const [values, setValues] = useState(initialState);
@@ -17,6 +17,7 @@ const Register = () => {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    console.log(e.target.name);
   };
   const handleSubmit = (e) => {};
 
