@@ -13,7 +13,7 @@ import { loginUser } from "../features/users/userSlice";
 import { useNavigate } from "react-router";
 const Register = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((store) => store.user);
+  const { user, isLoading } = useSelector((store) => store.user);
   const [values, setValues] = useState(initialState);
   const { name, email, password, isMember } = values;
   const toggleMember = () => {
@@ -59,7 +59,7 @@ const Register = () => {
           handleChange={handleChange}
         />
         <button type="button" onClick={handleSubmit} className="btn btn-block">
-          submit
+          {isLoading ? "submitting..." : "submit"}
         </button>
         <button
           type="button"
@@ -68,7 +68,7 @@ const Register = () => {
           }
           className="btn btn-block"
         >
-          demo
+          {isLoading ? "demo..." : "demo"}
         </button>
         <p>
           {values.isMember ? "Not a user yet?" : "Already a user?"}

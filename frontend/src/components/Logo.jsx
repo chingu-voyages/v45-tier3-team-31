@@ -3,9 +3,9 @@ import logo from "../assets/images/logo.svg";
 import { styled } from "styled-components";
 const Logo = () => {
   return (
-    <Wrapper>
+    <Wrapper className="logo">
       <img src={logo} alt="educator logo" />
-      <p> Educator</p>
+      <p className="logo-text"> Educator</p>
     </Wrapper>
   );
 };

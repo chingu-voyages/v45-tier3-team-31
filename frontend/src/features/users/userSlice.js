@@ -1,5 +1,5 @@
 const initialState = {
-  isSidebarOpen: false,
+  isSideBarOpen: false,
   isLoading: false,
   user: null,
 };
@@ -13,6 +13,7 @@ export const loginUser = createAsyncThunk(
     // } catch (error) {
     //   return thunkAPI.rejectWithValue("nothing");
     // }
+
     return user;
   }
 );
@@ -20,6 +21,11 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState,
+  reducers: {
+    toggleSideBar: (state) => {
+      state.isSideBarOpen = !state.isSideBarOpen;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
@@ -34,5 +40,5 @@ const userSlice = createSlice({
       });
   },
 });
-
+export const { toggleSideBar } = userSlice.actions;
 export default userSlice.reducer;
