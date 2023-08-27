@@ -25,7 +25,7 @@ const SmallSideBar = () => {
           <header>
             <Logo />
           </header>
-          <NavLinks/>
+          <NavLinks toggleSideBar={()=>dispatch(toggleSideBar())}/>
 
         </div>
       </div>
