@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 const initialState = {
   name: "",
   email: "",
@@ -8,7 +8,12 @@ const initialState = {
 import Wrapper from "../assets/wrappers/RegisterPage";
 import { FormRow, Logo } from "../components";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../features/users/userSlice";
+import { useNavigate } from "react-router";
 const Register = () => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((store) => store.user);
   const [values, setValues] = useState(initialState);
   const { name, email, password, isMember } = values;
   const toggleMember = () => {
@@ -20,7 +25,13 @@ const Register = () => {
     console.log(e.target.name);
   };
   const handleSubmit = (e) => {};
-
+  //Programmatically redirect to dashboard
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   return (
     <Wrapper className="full-pages">
       <div className="form">
@@ -49,6 +60,15 @@ const Register = () => {
         />
         <button type="button" onClick={handleSubmit} className="btn btn-block">
           submit
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            dispatch(loginUser({ name: "fsdfsdf", password: "fdsf" }))
+          }
+          className="btn btn-block"
+        >
+          demo
         </button>
         <p>
           {values.isMember ? "Not a user yet?" : "Already a user?"}

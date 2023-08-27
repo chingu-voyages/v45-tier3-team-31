@@ -10,6 +10,7 @@ CREATE TABLE Teacher (
 
 CREATE TABLE Class (
     id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
     course_id INT NOT NULL,
     created_date DATE NOT NULL,
     status ENUM('ongoing', 'closed') NOT NULL
