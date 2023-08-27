@@ -13,7 +13,10 @@ function App() {
               <ShareLayout />
             </ProtectedRoute>
           }
-        ></Route>
+        >
+
+          
+        </Route>
         <Route path="landing" element={<Landing />} />
         <Route path="register" element={<Register />} />
       </Routes>
