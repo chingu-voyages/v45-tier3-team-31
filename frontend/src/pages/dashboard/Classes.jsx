@@ -1,10 +1,11 @@
 import React from "react";
-import { SearchContainer } from "../../components";
+import { ClassesContainer, SearchContainer } from "../../components";
 
 const Classes = () => {
   return (
     <div>
       <SearchContainer />
+      <ClassesContainer />
     </div>
   );
 };
