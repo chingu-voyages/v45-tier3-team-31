@@ -3,7 +3,7 @@ import logo from "../assets/images/logo.svg";
 import { styled } from "styled-components";
 const Logo = () => {
   return (
-    <Wrapper className="logo">
+    <Wrapper>
       <img src={logo} alt="educator logo" />
       <p className="logo-text"> Educator</p>
     </Wrapper>

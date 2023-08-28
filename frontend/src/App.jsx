@@ -1,6 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import { Landing, ProtectedRoute, Register, ShareLayout } from "./pages";
+import {
+  Attendance,
+  Classes,
+  Homework,
+  Landing,
+  ProtectedRoute,
+  Register,
+  ShareLayout,
+} from "./pages";
 
 function App() {
   return (
@@ -14,8 +22,9 @@ function App() {
             </ProtectedRoute>
           }
         >
-
-          
+          <Route index element={<Classes />} />
+          <Route path="attendance" element={<Attendance />} />
+          <Route path="homework" element={<Homework />} />
         </Route>
         <Route path="landing" element={<Landing />} />
         <Route path="register" element={<Register />} />

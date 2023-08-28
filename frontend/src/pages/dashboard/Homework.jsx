@@ -1,17 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Homework = () => {
-  return (
-    <div>Homework</div>
-  )
-}
+  return <div>Homework</div>;
+};
 
-export default Homework
-
-
-
-
-
-
-
-
+export default Homework;

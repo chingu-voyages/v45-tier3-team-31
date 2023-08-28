@@ -18,7 +18,7 @@ const BigSideBar = () => {
           <header>
             <Logo />
           </header>
-          <NavLinks toggleSideBar={() => dispatch(toggleSideBar())} />
+          <NavLinks />
         </div>
       </div>
     </Wrapper>
