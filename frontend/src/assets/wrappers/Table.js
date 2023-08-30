@@ -5,14 +5,15 @@ const Wrapper = styled.div`
   .form {
     width: 100%;
     max-width: 100%;
+    overflow-x:auto;
   }
   .header {
     background-color: var(--primary-500);
     color: var(--primary-50);
   }
-  table {
-    overflow-x: scroll;
-  }
+ 
+  
+
   th {
     border-radius: var(--borderRadius);
   }
