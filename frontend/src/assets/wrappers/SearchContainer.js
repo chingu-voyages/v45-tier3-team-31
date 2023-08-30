@@ -4,6 +4,12 @@ const Wrapper = styled.section`
   .form {
     width: 100%;
     max-width: 100%;
+    position: relative;
+  }
+  .add-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
   }
   .form-input,
   .form-select,

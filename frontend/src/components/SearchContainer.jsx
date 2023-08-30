@@ -6,6 +6,9 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <div className="form">
+        <button type="button" className="btn add-btn">
+          Add Class
+        </button>
         <h4>search class</h4>
         {/* <div className="form-center"> */}
         <FormRow
