@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { students } from "../../utils/testData";
 
 const initialState = {
   isLoading: false,
@@ -7,6 +8,7 @@ const initialState = {
   name: "",
   createdDate: "",
   courseName: "",
+  students: students,
 };
 
 const classSlice = createSlice({
