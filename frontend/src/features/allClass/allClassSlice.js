@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { classese } from "../../utils/testData";
 
 const initialFiltersState = {
   search: "",
@@ -6,7 +7,7 @@ const initialFiltersState = {
 
 const initialState = {
   isLoading: true,
-  classes: [],
+  classes: classese,
   totalClasses: 0,
   numOfPages: 1,
   page: 1,
