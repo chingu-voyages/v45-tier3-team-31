@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     color: var(--primary-50);
   }
   table {
-    overflow-x: auto;
+    overflow-x: scroll;
   }
   th {
     border-radius: var(--borderRadius);
