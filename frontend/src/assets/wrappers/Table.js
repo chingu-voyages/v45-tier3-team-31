@@ -2,18 +2,9 @@ import React from "react";
 import { styled } from "styled-components";
 
 const Wrapper = styled.div`
-  margin-top: 1rem;
-
-  table {
+  .form {
     width: 100%;
-    overflow-x: auto;
-    width: 100%;
-    background: var(--white);
-    border-radius: var(--borderRadius);
-    box-shadow: var(--shadow-2);
-    padding: 2rem 2.5rem;
-    margin: 3rem auto;
-    transition: var(--transition);
+    max-width: 100%;
   }
   .header {
     background-color: var(--primary-500);
