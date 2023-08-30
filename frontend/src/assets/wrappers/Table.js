@@ -4,11 +4,14 @@ import { styled } from "styled-components";
 const Wrapper = styled.div`
   .form {
     width: 100%;
-    max-width: 90vw;
+    max-width: 100%;
   }
   .header {
     background-color: var(--primary-500);
     color: var(--primary-50);
+  }
+  table {
+    overflow-x: auto;
   }
   th {
     border-radius: var(--borderRadius);
