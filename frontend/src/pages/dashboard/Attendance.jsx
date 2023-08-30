@@ -18,7 +18,7 @@ const Attendance = () => {
     <Wrapper>
       <div className="row">
         <div className="col">
-          <table>
+          <table className="">
             <thead>
               <tr className="header">
                 <th scope="col">No</th>
@@ -28,11 +28,6 @@ const Attendance = () => {
                     {capitalizeSentence(col)}
                   </th>
                 ))}
-                <th scope="col">
-                  <button type="button" className="btn">
-                    Add +
-                  </button>
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -41,6 +36,9 @@ const Attendance = () => {
                 return (
                   <tr key={rowIndex}>
                     <td>{rowIndex + 1}</td>
+                    {row.map((col, colId) => (
+                      <td key={colId}>{col}</td>
+                    ))}
                   </tr>
                 );
               })}

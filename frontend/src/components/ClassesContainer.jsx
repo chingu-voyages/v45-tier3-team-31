@@ -1,7 +1,6 @@
-import React from "react";
-
+import Wrapper from "../assets/wrappers/ClassesContainer";
 const ClassesContainer = () => {
-  return <div>ClassesContainer</div>;
+  return <Wrapper></Wrapper>;
 };
 
 export default ClassesContainer;
