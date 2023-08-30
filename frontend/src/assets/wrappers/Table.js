@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 const Wrapper = styled.div`
   .form {
     width: 100%;
-    max-width: 100%;
+    max-width: 90vw;
   }
   .header {
     background-color: var(--primary-500);
