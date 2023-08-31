@@ -1,20 +1,17 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const Wrapper = styled.div
-`
-overflow-x: auto;
+const Wrapper = styled.div`
+  overflow-x: auto;
   .form {
     width: 100%;
     max-width: 100%;
-    overflow-x:auto;
+    overflow-x: auto;
   }
   .header {
     background-color: var(--primary-500);
     color: var(--primary-50);
   }
- 
-  
 
   th {
     border-radius: var(--borderRadius);
@@ -25,7 +22,13 @@ overflow-x: auto;
     border: 0.1rem solid var(--primary-50);
     border-radius: var(--borderRadius);
   }
-  tr {
+  .form-input {
+    margin: 0;
+    background: transparent;
+    outline: var(--primary-500);
+    text-align: center;
+    border-width: 1px;
+    height: 100%;
   }
 `;
 export default Wrapper;

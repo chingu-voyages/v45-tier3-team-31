@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { criteria, studentGrade } from "../../utils/testData";
 
 const initialState = {
-  criteria: [],
-  studentGrade: [],
+  criteria: criteria,
+  studentGrade: studentGrade,
   createdAt: "",
 };
 
