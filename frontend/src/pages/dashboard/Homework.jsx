@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import Wrapper from "../../assets/wrappers/Homework";
+import { useSelector } from "react-redux";
 const Homework = () => {
+  const { students } = useSelector((store) => store.class);
   const [columns, setColumns] = useState(["columns 1"]);
-  const [rows, setRows] = useState([]);
+
+  const studentNames = students.map((student) =>
+    Object.keys(student)
+      .filter((key) => key === "full_name")
+      .map((key) => student[key])
+  );
+  const [rows, setRows] = useState(studentNames);
   return (
     <Wrapper>
       <div className="row">
         <div className="col">
+          {JSON.stringify(rows)}
           <table>
             <thead>
               <tr className="header">
@@ -24,7 +33,14 @@ const Homework = () => {
                 </th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  <td>{rowIndex + 1}</td>
+                  <td>{row[0]}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       </div>

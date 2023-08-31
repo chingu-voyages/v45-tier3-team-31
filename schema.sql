@@ -44,6 +44,7 @@ CREATE TABLE StudentGrade (
     id INT PRIMARY KEY,
     class_id INT NOT NULL,
     student_id INT NOT NULL,
+    criteria_id INT NOT NULL,
     date DATE NOT NULL,
     note TEXT,
     status ENUM('pass', 'fail') NOT NULL

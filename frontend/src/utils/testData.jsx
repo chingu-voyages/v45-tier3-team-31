@@ -388,3 +388,42 @@ export const classese = [
     status: "ongoing",
   },
 ];
+
+export const criteria = [
+  {
+    id: 1,
+    date: "9/19/2022",
+    class_id: 1,
+    criteria_name: "Mehamn Airport",
+  },
+  {
+    id: 2,
+    date: "10/8/2022",
+    class_id: 1,
+    criteria_name: "Pointe-à-Pitre Le Raizet",
+  },
+  {
+    id: 3,
+    date: "3/2/2023",
+    class_id: 1,
+    criteria_name: "Loakan Airport",
+  },
+  {
+    id: 4,
+    date: "12/10/2022",
+    class_id: 1,
+    criteria_name: "Kabalo Airport",
+  },
+  {
+    id: 5,
+    date: "2/11/2023",
+    class_id: 1,
+    criteria_name: "Fane Airport",
+  },
+  {
+    id: 6,
+    date: "8/5/2023",
+    class_id: 1,
+    criteria_name: "Alverca Air Base",
+  },
+];
