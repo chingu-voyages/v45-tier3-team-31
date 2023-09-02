@@ -24,12 +24,12 @@ const Homework = () => {
     return row;
   });
 const handleRowChange = (value,rowIndex,colIndex) => { 
-  setRows(prevRows => prevRows.map((row,rowId)=> rowId===rowIndex?row.map((col,colId)=> colId===colIndex-1?value:col):row))
+  setRows(prevRows => prevRows.map((row,rowId)=> rowId===rowIndex?row.map((col,colId)=> colId===colIndex?value:col):row))
  }
   const [rows, setRows] = useState(initialRows || []);
   return (
     <Wrapper>
-      {JSON.stringify(rows)}
+      
       <div className="row">
         <div className="col">
           <table className="form">
