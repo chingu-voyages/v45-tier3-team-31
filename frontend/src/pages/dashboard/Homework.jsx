@@ -62,7 +62,7 @@ const handleRowChange = (value,rowIndex,colIndex) => {
                     }
                     return (
                       <td style={{ border: "transparent" }} key={colIndex}>
-                        <input className="form-input" type="text" value={col} />{" "}
+                        <input className="form-input" type="text" value={col} onchange={(e)=>handleRowChange(e.target.value,rowIndex,colIndex)} />{" "}
                       </td>
                     );
                   })}
