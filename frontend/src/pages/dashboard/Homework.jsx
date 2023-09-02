@@ -29,6 +29,7 @@ const handleRowChange = (value,rowIndex,colIndex) => {
   const [rows, setRows] = useState(initialRows || []);
   return (
     <Wrapper>
+      {JSON.stringify(rows)}
       <div className="row">
         <div className="col">
           <table className="form">
