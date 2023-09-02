@@ -18,6 +18,9 @@ const Class = ({ name, course, status }) => {
         <footer>
           <div className="actions">
             <button type="button" className="btn edit-btn">
+              View
+            </button>
+            <button type="button" className="btn edit-btn">
               Edit
             </button>
             <button type="button" className="btn delete-btn">

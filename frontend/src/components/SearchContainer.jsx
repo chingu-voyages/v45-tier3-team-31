@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import Wrapper from "../assets/wrappers/SearchContainer";
 import FormRow from "./FormRow";
+import { useDispatch } from "react-redux";
+import { showAddClass } from "../features/allClass/allClassSlice";
 const SearchContainer = () => {
   const [localSearch, setLocalSearch] = useState("");
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <div className="form">
-        <button type="button" className="btn add-btn">
+        <button
+          type="button"
+          className="btn add-btn"
+          onClick={() => dispatch(showAddClass())}
+        >
           Add Class
         </button>
         <h4>search class</h4>

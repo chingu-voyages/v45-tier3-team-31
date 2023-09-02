@@ -23,13 +23,18 @@ const Homework = () => {
     });
     return row;
   });
-const handleRowChange = (value,rowIndex,colIndex) => { 
-  setRows(prevRows => prevRows.map((row,rowId)=> rowId===rowIndex?row.map((col,colId)=> colId===colIndex?value:col):row))
- }
+  const handleRowChange = (value, rowIndex, colIndex) => {
+    setRows((prevRows) =>
+      prevRows.map((row, rowId) =>
+        rowId === rowIndex
+          ? row.map((col, colId) => (colId === colIndex ? value : col))
+          : row
+      )
+    );
+  };
   const [rows, setRows] = useState(initialRows || []);
   return (
     <Wrapper>
-      
       <div className="row">
         <div className="col">
           <table className="form">
@@ -63,7 +68,14 @@ const handleRowChange = (value,rowIndex,colIndex) => {
                     }
                     return (
                       <td style={{ border: "transparent" }} key={colIndex}>
-                        <input className="form-input" type="text" value={col} onchange={(e)=>handleRowChange(e.target.value,rowIndex,colIndex)} />{" "}
+                        <input
+                          className="form-input"
+                          type="text"
+                          value={col}
+                          onChange={(e) =>
+                            handleRowChange(e.target.value, rowIndex, colIndex)
+                          }
+                        />
                       </td>
                     );
                   })}
