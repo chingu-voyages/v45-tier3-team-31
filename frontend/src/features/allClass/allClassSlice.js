@@ -34,7 +34,12 @@ const allClassesSlice = createSlice({
     closeAddClass: (state) => {
       state.isAddClassOpen = false;
     },
+    handleAddClassInput:(state,{payload})=>{
+      const {name ,value}= payload
+      state[name]=value
+
+    }
   },
 });
-export const { showAddClass, closeAddClass } = allClassesSlice.actions;
+export const {handleAddClassInput ,showAddClass, closeAddClass } = allClassesSlice.actions;
 export default allClassesSlice.reducer;
