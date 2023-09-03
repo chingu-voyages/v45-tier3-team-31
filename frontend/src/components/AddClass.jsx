@@ -3,8 +3,12 @@ import Wrapper from "../assets/wrappers/AddClass";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTimes } from "react-icons/fa";
 import FormRow from "./FormRow";
-import {handleAddClassInput, closeAddClass } from "../features/allClass/allClassSlice";
+import {
+  handleAddClassInput,
+  closeAddClass,
+} from "../features/allClass/allClassSlice";
 import FormSelect from "./FormSelect";
+import moment from "moment/moment";
 const AddClass = () => {
   const {
     isAddClassOpen,
@@ -15,9 +19,11 @@ const AddClass = () => {
     createdDate,
   } = useSelector((store) => store.allClasses);
   const dispatch = useDispatch();
-  const handleChange = (e) => { 
-    dispatch(handleAddClassInput({name:e.target.name,value:e.target.value}))
-   }
+  const handleChange = (e) => {
+    dispatch(
+      handleAddClassInput({ name: e.target.name, value: e.target.value })
+    );
+  };
   return (
     <Wrapper>
       <div
@@ -28,9 +34,14 @@ const AddClass = () => {
         <form className="form">
           <h5>Class Info</h5>
           {/* <div className="form-center"> */}
-          <FormRow value={name} name="name" type="text" handleChange={handleChange} />
           <FormRow
-            value={createdDate.getFullDate}
+            value={name}
+            name="name"
+            type="text"
+            handleChange={handleChange}
+          />
+          <FormRow
+            value={createdDate}
             name="createdDate"
             labelText="created date"
             type="date"
@@ -43,8 +54,11 @@ const AddClass = () => {
             type="text"
             handleChange={handleChange}
           />
-          <FormSelect name="status" list={statusOptions} value={status}
-          handleChange={handleChange}
+          <FormSelect
+            name="status"
+            list={statusOptions}
+            value={status}
+            handleChange={handleChange}
           />
           {/* </div> */}
           <button

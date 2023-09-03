@@ -6,7 +6,13 @@ const FormSelect = ({ name, labelText, handleChange, list, value }) => {
       <label htmlFor={name} className="form-label">
         {labelText || name}
       </label>
-      <select className="form-select" value={value} name={name} id={name}>
+      <select
+        onChange={handleChange}
+        className="form-select"
+        value={value}
+        name={name}
+        id={name}
+      >
         {list.map((item, index) => (
           <option key={index} value={item}>
             {item}

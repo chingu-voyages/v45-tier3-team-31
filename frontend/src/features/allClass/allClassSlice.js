@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { classese } from "../../utils/testData";
+import moment from "moment/moment";
 
 const initialFiltersState = {
   search: "",
 };
 const initialAddClassState = {
-  createdDate: new Date(),
+  createdDate: moment(Date()).format("YYYY-MM-DD"),
   name: "",
   status: "ongoing",
   statusOptions: ["ongoing", "closed"],
@@ -34,12 +35,12 @@ const allClassesSlice = createSlice({
     closeAddClass: (state) => {
       state.isAddClassOpen = false;
     },
-    handleAddClassInput:(state,{payload})=>{
-      const {name ,value}= payload
-      state[name]=value
-
-    }
+    handleAddClassInput: (state, { payload }) => {
+      const { name, value } = payload;
+      state[name] = value;
+    },
   },
 });
-export const {handleAddClassInput ,showAddClass, closeAddClass } = allClassesSlice.actions;
+export const { handleAddClassInput, showAddClass, closeAddClass } =
+  allClassesSlice.actions;
 export default allClassesSlice.reducer;
