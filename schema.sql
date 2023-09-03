@@ -40,8 +40,9 @@ CREATE TABLE IF NOT EXISTS Criterion (
     criteria_name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS  StudentGrade (
-    id SERIAL PRIMARY KEY,
+
+CREATE TABLE IF NOT EXISTS StudentGrade (
+    criteria_id SERIAL PRIMARY KEY,
     class_id INT NOT NULL,
     student_id INT NOT NULL,
     date DATE NOT NULL,
