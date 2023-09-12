@@ -1,5 +1,8 @@
+const useBcrypt = require("sequelize-bcrypt");
 module.exports = (sequelize, DataTypes) => {
-    const Teacher = sequelize.define("teacher", {
+  const Teacher = sequelize.define(
+    "teacher",
+    {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -19,17 +22,19 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-        sequelize,
-        modelName: 'teacher',
-        tableName: 'teacher'
+      sequelize,
+      modelName: "teacher",
+      tableName: "teacher",
     }
-    
-    );
-    const syncTable = async () => {
-        await Teacher.sync({ alter: true });
-      };
-      syncTable();
-    
-    return Teacher;
+  );
+  const syncTable = async () => {
+    await Teacher.sync({ alter: true });
   };
-  
+  syncTable();
+  useBcrypt(Teacher, {
+    field: "password",
+    rounds: 12,
+    compare: "authenticate",
+  });
+  return Teacher;
+};

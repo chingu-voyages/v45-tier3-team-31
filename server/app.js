@@ -1,5 +1,5 @@
 const express = require("express");
-const {connectDB} = require("./DB/connect");
+const { connectDB } = require("./DB/connect");
 const app = express();
 const notFound = require("./middlewares/not-found");
 const studentGrade = require("./routers/studentGrade");
@@ -17,7 +17,7 @@ Chingu Voyage 44 Team 31 Educator Star
 
 // student grade routes
 app.use("/api/v1/studentgrade", studentGrade);
-app.use("/api/v1/teachers", teachers)
+app.use("/api/v1/teachers", teachers);
 //not found
 app.use(notFound);
 //error handler
@@ -25,9 +25,9 @@ app.use(notFound);
 // Start the server
 const PORT = process.env.DB_PORT || 3000;
 
-const start = () => {
+const start = async () => {
   try {
-    connectDB();
+    // await connectDB();
     app.listen(PORT, console.log(`Server is running on port ${PORT}`));
   } catch (error) {
     console.log(error);
