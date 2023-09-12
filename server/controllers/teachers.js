@@ -2,6 +2,7 @@ const { connectDB } = require("../DB/connect");
 const Teacher = require("../models/teachers");
 const { StatusCodes } = require("http-status-codes");
 const db = connectDB();
+const { BadRequest, Unauthenticated } = require("../errors");
 const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
   const { email, password } = req.body;
