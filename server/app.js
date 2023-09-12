@@ -7,6 +7,7 @@ const notFound = require("./middlewares/not-found");
 const studentGrade = require("./routers/studentGrade");
 const teachers = require("./routers/teachers");
 const authMiddleware = require("./middlewares/authorization");
+const errorHandlerMiddleware = require("./middlewares/error-handler");
 //middleware
 app.use(express.json());
 
@@ -25,7 +26,7 @@ app.use("/api/v1/studentgrade", authMiddleware, studentGrade);
 //not found
 app.use(notFound);
 //error handler
-
+app.use(errorHandlerMiddleware);
 // Start the server
 const PORT = process.env.DB_PORT || 3000;
 
