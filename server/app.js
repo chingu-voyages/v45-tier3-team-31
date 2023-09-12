@@ -1,8 +1,9 @@
 const express = require("express");
-const connectDB = require("./DB/connect");
+const {connectDB} = require("./DB/connect");
 const app = express();
 const notFound = require("./middlewares/not-found");
 const studentGrade = require("./routers/studentGrade");
+const teachers = require("./routers/teachers");
 //middleware
 app.use(express.json());
 
@@ -16,17 +17,17 @@ Chingu Voyage 44 Team 31 Educator Star
 
 // student grade routes
 app.use("/api/v1/studentgrade", studentGrade);
-
+app.use("/api/v1/teachers", teachers)
 //not found
 app.use(notFound);
 //error handler
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.DB_PORT || 3000;
 
-const start = async () => {
+const start = () => {
   try {
-    await connectDB();
+    connectDB();
     app.listen(PORT, console.log(`Server is running on port ${PORT}`));
   } catch (error) {
     console.log(error);
