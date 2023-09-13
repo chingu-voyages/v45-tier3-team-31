@@ -1,14 +1,3 @@
- <div className="info">
-          <h1>
-            student <span>management</span> app
-          </h1>
-          <p>
-            Helps educators manage data, maximize student success. This
-            easy-to-use system handles attendance and learning performance
-          </p>
-          <Link to="/register" className="btn btn-hero">
-            login/register
-          </Link>
-        </div>
-        <img src={main} alt="classroom" className="img main-img" />
-      </div>
+<div style="width: 100%;">
+  <img src="projectintro.svg" style="width: 100%;" alt="Landing Page">
+</div>
