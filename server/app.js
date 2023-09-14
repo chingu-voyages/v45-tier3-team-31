@@ -20,7 +20,7 @@ app.use(express.json());
 app.get("/", (req, res) =>
   res.send(`    <h1>
 Chingu Voyage 44 Team 31 Educator Star
-<a href="api/v1/studentgrade">API </a>
+<a href="api/v1/teachers">API </a>
 </h1>`)
 );
 //teacher route + authorization
