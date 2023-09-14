@@ -49,7 +49,7 @@ const Teacher = sequelize.define(
 const syncTable = async () => {
   await Teacher.sync({ alter: true });
 };
-syncTable();
+// syncTable();
 useBcrypt(Teacher, {
   field: "password",
   rounds: 12,

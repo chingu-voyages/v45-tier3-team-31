@@ -1,7 +1,6 @@
-const { connectDB } = require("../DB/connect");
 const Teacher = require("../models/teachers");
 const { StatusCodes } = require("http-status-codes");
-const db = connectDB();
+
 const { BadRequest, Unauthenticated } = require("../errors");
 const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
@@ -9,7 +8,7 @@ const login = async (req, res) => {
   if (!email || !password) {
     throw new BadRequest("Please provide email and password");
   }
-  const user = await db.Teacher.findOne({ where: { email } });
+  const user = await Teacher.findOne({ where: { email } });
   if (!user) {
     throw new Unauthenticated("Wrong email");
   }
@@ -25,7 +24,7 @@ const login = async (req, res) => {
   res.status(StatusCodes.OK).json({ userName: user.name, token });
 };
 const register = async (req, res) => {
-  const user = await db.Teacher.create({ ...req.body });
+  const user = await Teacher.create({ ...req.body });
   const token = jwt.sign(
     { userID: user.id, userName: user.name },
     process.env.JWT_SECRET,
@@ -36,7 +35,7 @@ const register = async (req, res) => {
 
 const getAllTeachers = async (req, res) => {
   try {
-    const teacherData = await db.Teacher.findAll({
+    const teacherData = await Teacher.findAll({
       order: [["id", "ASC"]],
     });
     return res.status(200).json({ teachers: teacherData });
@@ -49,7 +48,7 @@ const getAllTeachers = async (req, res) => {
 const createTeacher = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    const newTeacher = await db.Teacher.create({
+    const newTeacher = await Teacher.create({
       username,
       email,
       password,
@@ -64,7 +63,7 @@ const createTeacher = async (req, res) => {
 const getTeacherById = async (req, res) => {
   const { id } = req.params;
   try {
-    const teacher = await db.Teacher.findByPk(id);
+    const teacher = await Teacher.findByPk(id);
     if (!teacher) {
       return res.status(404).json({ error: "Teacher not found" });
     }
@@ -78,7 +77,7 @@ const getTeacherById = async (req, res) => {
 const updateTeacher = async (req, res) => {
   const { id } = req.params;
   try {
-    const updatedRowsCount = await db.Teacher.update(req.body, {
+    const updatedRowsCount = await Teacher.update(req.body, {
       where: { id },
     });
 
@@ -95,7 +94,7 @@ const updateTeacher = async (req, res) => {
 const deleteTeacher = async (req, res) => {
   const { id } = req.params;
   try {
-    const deletedTeacher = await db.Teacher.destroy({ where: { id } });
+    const deletedTeacher = await Teacher.destroy({ where: { id } });
     if (!deletedTeacher) {
       return res.status(404).json({ error: "Teacher not found" });
     }
