@@ -9,11 +9,12 @@ const getAllClasses = async (req, res) => {
     .json({ success: true, amount: classes.length, classes });
 };
 const getSingleClass = async (req, res) => {
-  const job = await Job.findOne({ where: { id: JobId, UserId } });
-  if (!job) {
-    throw new NotFound(`No job with id ${JobId}`);
+  const {id} = req.params
+  const aClass = await Class.findOne({ where: { id } });
+  if (!aClass) {
+    throw new NotFound(`No class with id ${id}`);
   }
-  res.status(StatusCodes.OK).json({ success: true, job });
+  res.status(StatusCodes.OK).json({ success: true, aClass });
 };
 const createClass = async (req, res) => {
   const aClass = await Class.create({ ...req.body });
@@ -21,32 +22,25 @@ const createClass = async (req, res) => {
 };
 const updateClass = async (req, res) => {
   const {
-    body: { company, position },
-    params: { id: JobId },
-    user: { id: UserId },
+    
+    params: { id },
+  
   } = req;
-  const job = await Job.update(
+  const job = await Class.update(
     { ...req.body },
-    { where: { id: JobId, UserId } }
-  );
-  if (!company && !position) {
-    throw new BadRequest("Please provide company or/and position");
-  }
-  if (!job[0]) {
-    throw new NotFound(`No job with id ${JobId}`);
-  }
+    { where: { id} })
   res.status(StatusCodes.OK).json({ success: true, job });
 };
 const deleteClass = async (req, res) => {
   const {
-    params: { id: JobId },
-    user: { id: UserId },
+    params: { id,classId},
+  
   } = req;
-  const job = await Job.destroy({ where: { id: JobId, UserId } });
-  if (!job) {
-    throw new NotFound(`No job with id ${JobId}`);
+  const aClass = await Job.destroy({ where: { id } });
+  if (!aClass) {
+    throw new NotFound(`No class with id ${id}`);
   }
-  res.status(StatusCodes.OK).json({ msg: "job deleted" });
+  res.status(StatusCodes.OK).json({ msg: "class deleted" });
 };
 module.exports = {
   getAllClasses,
