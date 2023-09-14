@@ -10,11 +10,12 @@ const getAllStudent = async (req, res) => {
     .json({ success: true, amount: students.length, students });
 };
 const getSingleStudent = async (req, res) => {
-  const job = await Job.findOne({ where: { id: JobId, UserId } });
-  if (!job) {
-    throw new NotFound(`No job with id ${JobId}`);
+  const {id,classId} = req.params
+  const student = await Student.findOne({ where: { id, classId } });
+  if (!student) {
+    throw new NotFound(`No student with id ${id}`);
   }
-  res.status(StatusCodes.OK).json({ success: true, job });
+  res.status(StatusCodes.OK).json({ success: true, student });
 };
 const createStudent = async (req, res) => {
   const student = await Student.create({ ...req.body });
@@ -22,32 +23,29 @@ const createStudent = async (req, res) => {
 };
 const updateStudent = async (req, res) => {
   const {
-    body: { company, position },
-    params: { id: JobId },
-    user: { id: UserId },
+    
+    params: { id,classId },
+    
   } = req;
-  const job = await Job.update(
+  const student = await Student.update(
     { ...req.body },
-    { where: { id: JobId, UserId } }
-  );
-  if (!company && !position) {
-    throw new BadRequest("Please provide company or/and position");
-  }
-  if (!job[0]) {
-    throw new NotFound(`No job with id ${JobId}`);
+    { where: { id, classId } }
+  )
+  if (!student[0]) {
+    throw new NotFound(`No student with id ${id}`)
   }
   res.status(StatusCodes.OK).json({ success: true, job });
 };
 const deleteStudent = async (req, res) => {
   const {
-    params: { id: JobId },
-    user: { id: UserId },
+    params: { id,classId},
+    
   } = req;
-  const job = await Job.destroy({ where: { id: JobId, UserId } });
-  if (!job) {
-    throw new NotFound(`No job with id ${JobId}`);
+  const student = await Student.destroy({ where: { id,classId } });
+  if (!student) {
+    throw new NotFound(`No student with id ${id}`);
   }
-  res.status(StatusCodes.OK).json({ msg: "job deleted" });
+  res.status(StatusCodes.OK).json({ msg: "student deleted" });
 };
 module.exports = {
   getAllStudent,
