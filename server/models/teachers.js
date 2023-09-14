@@ -1,40 +1,59 @@
 const useBcrypt = require("sequelize-bcrypt");
-module.exports = (sequelize, DataTypes) => {
-  const Teacher = sequelize.define(
-    "teacher",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize(process.env.POSGRESQL_URI);
+const Teacher = sequelize.define(
+  "teacher",
+  {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Please enter a username",
+        },
       },
     },
-    {
-      sequelize,
-      modelName: "teacher",
-      tableName: "teacher",
-    }
-  );
-  const syncTable = async () => {
-    await Teacher.sync({ alter: true });
-  };
-  syncTable();
-  useBcrypt(Teacher, {
-    field: "password",
-    rounds: 12,
-    compare: "authenticate",
-  });
-  return Teacher;
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: "Please enter an email",
+        },
+        notEmpty: {
+          msg: "Please enter an email",
+        },
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [6],
+          msg: "password requires at least 6 characters",
+        },
+        notEmpty: {
+          msg: "Please enter a password",
+        },
+      },
+    },
+  },
+  {
+    sequelize,
+    modelName: "Teacher",
+    tableName: "teacher",
+  }
+);
+const syncTable = async () => {
+  await Teacher.sync({ alter: true });
 };
+syncTable();
+useBcrypt(Teacher, {
+  field: "password",
+  rounds: 12,
+  compare: "authenticate",
+});
+
+module.exports = Teacher;

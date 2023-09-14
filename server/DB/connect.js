@@ -1,10 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const dotenv = require("dotenv");
-dotenv.config();
+
 // please change connection string later
-// const sequelize = new Sequelize(
-//   "postgresql://postgres:Chbjbbm5t1TJXRdWH5O7@containers-us-west-135.railway.app:6540/railway"
-// );
+const sequelize = new Sequelize(process.env.POSGRESQL_URI);
 const connectDB = async () => {
   const hostName = process.env.DB_HOST;
   const database = process.env.DB_NAME;
