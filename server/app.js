@@ -6,6 +6,8 @@ require("express-async-errors");
 const notFound = require("./middlewares/not-found");
 const studentGrade = require("./routers/studentGrade");
 const teachers = require("./routers/teachers");
+const classes = require("./routers/classes");
+const students = require("./routers/student");
 const authMiddleware = require("./middlewares/authorization");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
 const cors = require("cors");
@@ -23,6 +25,10 @@ Chingu Voyage 44 Team 31 Educator Star
 );
 //teacher route + authorization
 app.use("/api/v1/teachers", teachers);
+//classes route
+app.use("/api/v1/classes", authMiddleware, classes);
+//students route
+app.use("/api/v1/students", authMiddleware, students);
 // student grade routes
 app.use("/api/v1/studentgrade", authMiddleware, studentGrade);
 
