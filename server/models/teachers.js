@@ -5,7 +5,7 @@ const sequelize = new Sequelize(process.env.POSGRESQL_URI);
 const Teacher = sequelize.define(
   "teacher",
   {
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {

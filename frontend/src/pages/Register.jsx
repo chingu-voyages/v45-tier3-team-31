@@ -9,7 +9,7 @@ import Wrapper from "../assets/wrappers/RegisterPage";
 import { FormRow, Logo } from "../components";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../features/users/userSlice";
+import { loginUser, registerUser } from "../features/users/userSlice";
 import { useNavigate } from "react-router";
 const Register = () => {
   const dispatch = useDispatch();
@@ -24,7 +24,12 @@ const Register = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
     console.log(e.target.name);
   };
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    if (isMember) {
+      return dispatch(loginUser({ email, password }));
+    }
+    return dispatch(registerUser({ email, password, name }));
+  };
   //Programmatically redirect to dashboard
   const navigate = useNavigate();
   useEffect(() => {
@@ -64,7 +69,9 @@ const Register = () => {
         <button
           type="button"
           onClick={() =>
-            dispatch(loginUser({ name: "fsdfsdf", password: "fdsf" }))
+            dispatch(
+              loginUser({ email: "demoteacher@gmail.com", password: "123456" })
+            )
           }
           className="btn btn-block"
         >

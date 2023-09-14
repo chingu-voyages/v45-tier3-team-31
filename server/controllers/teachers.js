@@ -21,7 +21,7 @@ const login = async (req, res) => {
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_LIFETIME }
   );
-  res.status(StatusCodes.OK).json({ userName: user.name, token });
+  res.status(StatusCodes.OK).json({ name: user.name, token });
 };
 const register = async (req, res) => {
   const user = await Teacher.create({ ...req.body });
@@ -30,7 +30,7 @@ const register = async (req, res) => {
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_LIFETIME }
   );
-  res.status(StatusCodes.CREATED).json({ userName: user.name, token });
+  res.status(StatusCodes.CREATED).json({ name: user.name, token });
 };
 
 const getAllTeachers = async (req, res) => {

@@ -8,6 +8,9 @@ const studentGrade = require("./routers/studentGrade");
 const teachers = require("./routers/teachers");
 const authMiddleware = require("./middlewares/authorization");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
+const cors = require("cors");
+// security packages
+app.use(cors());
 //middleware
 app.use(express.json());
 
@@ -28,7 +31,7 @@ app.use(notFound);
 //error handler
 app.use(errorHandlerMiddleware);
 // Start the server
-const PORT = process.env.DB_PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 const start = async () => {
   try {

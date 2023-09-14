@@ -9,7 +9,8 @@ import {
   Register,
   ShareLayout,
 } from "./pages";
-
+import "react-toastify/dist/ReactToastify.css";
+import { Slide, ToastContainer } from "react-toastify";
 function App() {
   return (
     <BrowserRouter>
@@ -29,6 +30,12 @@ function App() {
         <Route path="landing" element={<Landing />} />
         <Route path="register" element={<Register />} />
       </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar={true}
+        transition={Slide}
+      />
     </BrowserRouter>
   );
 }
