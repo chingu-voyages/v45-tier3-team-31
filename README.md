@@ -3,7 +3,7 @@
       <a href="https://educatorstar.netlify.app/landing"
       >Frontend Educator Start</a
     >
-    <a href="v44-tier3-team-31-production.up.railway.app"
+    <a href="https://v45-tier3-team-31-production.up.railway.app/"
       >Backend Educator API</a
     >
   <div>
