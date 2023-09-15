@@ -10,7 +10,7 @@ const getAllClasses = async (req, res) => {
 };
 const getSingleClass = async (req, res) => {
   const { id } = req.params;
-  const aClass = await Class.findOne({ where: { id: id } });
+  const aClass = await Class.findOne({ where: { id: id }, include: [Student] });
   if (!aClass) {
     throw new NotFound(`No class with id ${id}`);
   }
