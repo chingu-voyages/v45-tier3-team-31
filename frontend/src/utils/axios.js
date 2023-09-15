@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getUserFromLocalStorage } from "./localStorage";
 
 const customFetch = axios.create({
   baseURL: `https://v45-tier3-team-31-production.up.railway.app/api/v1/`,
@@ -7,7 +8,7 @@ const customFetch = axios.create({
 
 customFetch.interceptors.request.use((config) => {
   try {
-    const user = null;
+    const user = getUserFromLocalStorage() || null;
     if (user) {
       config.headers.Authorization = `Bearer ${user.token}`;
     }

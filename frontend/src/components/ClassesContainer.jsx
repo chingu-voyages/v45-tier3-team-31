@@ -1,8 +1,16 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../assets/wrappers/ClassesContainer";
 import Class from "./Class";
+import { useEffect } from "react";
+import { getAllClass } from "../features/allClass/allClassSlice";
 const ClassesContainer = () => {
   const { classes } = useSelector((store) => store.allClasses);
+
+  const dispatch = useDispatch();
+  // get all Classes
+  useEffect(() => {
+    dispatch(getAllClass());
+  }, []);
   if (classes.length === 0) {
     return (
       <Wrapper>

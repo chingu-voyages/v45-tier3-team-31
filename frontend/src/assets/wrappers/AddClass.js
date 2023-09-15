@@ -42,6 +42,9 @@ const Wrapper = styled.div`
     font-weight: 700;
     text-align: center;
   }
+  span {
+    color: var(--primary-500);
+  }
   .btn-block {
     align-self: end;
     margin-top: 1rem;
@@ -64,9 +67,6 @@ const Wrapper = styled.div`
   @media (min-width: 992px) {
     .form-center {
       grid-template-columns: 1fr 1fr 1fr;
-    }
-    .btn-block {
-      margin-top: 0;
     }
   }
 `;
