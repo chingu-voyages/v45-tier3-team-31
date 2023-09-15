@@ -9,8 +9,8 @@ const getAllClasses = async (req, res) => {
     .json({ success: true, amount: classes.length, classes });
 };
 const getSingleClass = async (req, res) => {
-  const {id} = req.params
-  const aClass = await Class.findOne({ where: { id } });
+  const { id } = req.params;
+  const aClass = await Class.findOne({ where: { id: id } });
   if (!aClass) {
     throw new NotFound(`No class with id ${id}`);
   }
@@ -21,22 +21,19 @@ const createClass = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ success: true, aClass });
 };
 const updateClass = async (req, res) => {
-  const {
-    
-    params: { id },
-  
-  } = req;
-  const job = await Class.update(
-    { ...req.body },
-    { where: { id} })
-  res.status(StatusCodes.OK).json({ success: true, job });
+  const { id } = req.params;
+  console.log(req.body);
+  const aClass = await Class.update({ ...req.body }, { where: { id: id } });
+  if (!aClass[0]) {
+    throw new NotFound(`No class with id ${id}`);
+  }
+  res.status(StatusCodes.OK).json({ success: true, msg: "Updated" });
 };
 const deleteClass = async (req, res) => {
   const {
-    params: { id,classId},
-  
+    params: { id },
   } = req;
-  const aClass = await Job.destroy({ where: { id } });
+  const aClass = await Class.destroy({ where: { id: id } });
   if (!aClass) {
     throw new NotFound(`No class with id ${id}`);
   }

@@ -3,15 +3,19 @@ const Class = require("../models/classes");
 const { NotFound, BadRequest } = require("../errors");
 const Student = require("../models/students");
 const getAllStudent = async (req, res) => {
-  const { classId } = req.body;
-  const students = await Student.findAll({ where: { classId } });
+  const { classId } = req.query;
+  let queryObject = {};
+  if (classId) {
+    queryObject.classId = classId;
+  }
+  const students = await Student.findAll({ where: { ...queryObject } });
   res
     .status(StatusCodes.OK)
     .json({ success: true, amount: students.length, students });
 };
 const getSingleStudent = async (req, res) => {
-  const {id,classId} = req.params
-  const student = await Student.findOne({ where: { id, classId } });
+  const { id } = req.params;
+  const student = await Student.findOne({ where: { id: id } });
   if (!student) {
     throw new NotFound(`No student with id ${id}`);
   }
@@ -23,25 +27,19 @@ const createStudent = async (req, res) => {
 };
 const updateStudent = async (req, res) => {
   const {
-    
-    params: { id,classId },
-    
+    params: { id },
   } = req;
-  const student = await Student.update(
-    { ...req.body },
-    { where: { id, classId } }
-  )
+  const student = await Student.update({ ...req.body }, { where: { id: id } });
   if (!student[0]) {
-    throw new NotFound(`No student with id ${id}`)
+    throw new NotFound(`No student with id ${id}`);
   }
-  res.status(StatusCodes.OK).json({ success: true, job });
+  res.status(StatusCodes.OK).json({ success: true, msg: "updated" });
 };
 const deleteStudent = async (req, res) => {
   const {
-    params: { id,classId},
-    
+    params: { id },
   } = req;
-  const student = await Student.destroy({ where: { id,classId } });
+  const student = await Student.destroy({ where: { id: id } });
   if (!student) {
     throw new NotFound(`No student with id ${id}`);
   }

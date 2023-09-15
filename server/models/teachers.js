@@ -17,6 +17,9 @@ const Teacher = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: {
+        msg: "Please enter a unique email",
+      },
       validate: {
         isEmail: {
           msg: "Please enter an email",
