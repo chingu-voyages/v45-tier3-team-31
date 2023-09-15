@@ -28,13 +28,24 @@ export const getSingleClass = createAsyncThunk(
 const classSlice = createSlice({
   name: "class",
   initialState,
+  reducers: {
+    viewClass: (state, { payload }) => {
+      state.editClassId = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getSingleClass.pending, (state) => {
         state.isLoading = false;
       })
       .addCase(getSingleClass.fulfilled, (state, { payload }) => {
-        const { name, date: createdDate, students, id: editClassId } = payload;
+        console.log(payload);
+        const {
+          name,
+          date: createdDate,
+          students,
+          id: editClassId,
+        } = payload.aClass;
         state.isLoading = false;
         return { ...state, name, createdDate, students, editClassId };
       })
@@ -44,5 +55,5 @@ const classSlice = createSlice({
       });
   },
 });
-
+export const { viewClass } = classSlice.actions;
 export default classSlice.reducer;

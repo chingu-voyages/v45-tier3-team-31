@@ -4,9 +4,17 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
 import { useDispatch, useSelector } from "react-redux";
 import ClassDetail from "./ClassDetail";
+import { useNavigate } from "react-router-dom";
 import { deleteClass, showEditClass } from "../features/allClass/allClassSlice";
+import { viewClass } from "../features/class/classSlice";
 const Class = ({ name, status, date, students, id }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const handleView = () => {
+    dispatch(viewClass(id));
+    navigate("/attendance");
+  };
+
   return (
     <Wrapper>
       <header>
@@ -29,7 +37,7 @@ const Class = ({ name, status, date, students, id }) => {
 
         <footer>
           <div className="actions">
-            <button type="button" className="btn edit-btn">
+            <button type="button" className="btn edit-btn" onClick={handleView}>
               View
             </button>
             <button
