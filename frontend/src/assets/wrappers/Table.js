@@ -12,7 +12,19 @@ const Wrapper = styled.div`
     background-color: var(--primary-500);
     color: var(--primary-50);
   }
-
+  tr {
+    position: relative;
+  }
+  .edit-btn {
+    position: absolute;
+    left: -3rem;
+    top: 0;
+    transform: scale(0);
+    transition: var(--transition);
+  }
+  tr:hover .edit-btn {
+    transform: scale(0);
+  }
   th {
     border-radius: var(--borderRadius);
   }

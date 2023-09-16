@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../assets/wrappers/Table";
 import { capitalizeSentence } from "../utils/methods";
-
+import { BsPencilSquare } from "react-icons/bs";
 import { useEffect } from "react";
 import { getSingleClass } from "../features/class/classSlice";
 const AttendanceTable = () => {
@@ -51,6 +51,9 @@ const AttendanceTable = () => {
                 console.log();
                 return (
                   <tr key={rowIndex}>
+                    <button type="button" className="edit-btn">
+                      <BsPencilSquare />
+                    </button>
                     <td>{rowIndex + 1}</td>
                     {row.map((col, colId) => (
                       <td key={colId}>{col}</td>

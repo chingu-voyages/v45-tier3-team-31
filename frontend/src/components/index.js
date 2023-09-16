@@ -1,4 +1,5 @@
 import AddClass from "./AddClass";
+import AddStudent from "./AddStudent";
 import AttendanceTable from "./AttendanceTable";
 import BigSideBar from "./BigSideBar";
 import ClassInfo from "./ClassInfo";
@@ -11,6 +12,7 @@ import SearchContainer from "./SearchContainer";
 import SmallSideBar from "./SmallSideBar";
 
 export {
+  AddStudent,
   FormSelect,
   AddClass,
   AttendanceTable,

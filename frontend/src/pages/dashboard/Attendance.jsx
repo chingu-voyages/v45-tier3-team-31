@@ -1,10 +1,11 @@
-import { AttendanceTable, ClassInfo } from "../../components";
+import { AddStudent, AttendanceTable, ClassInfo } from "../../components";
 
 const Attendance = () => {
   return (
     <>
       <ClassInfo />
       <AttendanceTable />
+      <AddStudent />
     </>
   );
 };

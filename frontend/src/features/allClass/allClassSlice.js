@@ -90,7 +90,7 @@ const allClassesSlice = createSlice({
     showAddClass: (state) => {
       state.isAddClassOpen = true;
       state.name = "";
-      state.isEdit = "";
+      state.isEdit = false;
       state.editClassId = "";
     },
     closeAddClass: (state) => {
