@@ -22,7 +22,7 @@ const AddStudent = () => {
     attended_date,
     parent_phone_number,
     isAddStudentOpen,
-  } = useSelector((store) => store.classes);
+  } = useSelector((store) => store.class);
   const dispatch = useDispatch();
   const handleChange = (e) => {
     dispatch(
