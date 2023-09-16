@@ -51,9 +51,9 @@ const AttendanceTable = () => {
                 console.log();
                 return (
                   <tr key={rowIndex}>
-                    {/* <button type="button" className="edit-btn btn">
+                    <button type="button" className="edit-btn btn">
                       <BsPencilSquare />
-                    </button> */}
+                    </button>
                     <td>{rowIndex + 1}</td>
                     {row.map((col, colId) => (
                       <td key={colId}>{col}</td>
