@@ -31,7 +31,12 @@ export const getAllClass = createAsyncThunk(
   "allClasses/getClasses",
   async (_, thunkAPI) => {
     try {
-      const { data } = await customFetch.get("classes");
+      let url = `classes`;
+      const search = thunkAPI.getState().allClasses.search;
+      if (search) {
+        url = url + `?search=${search}`;
+      }
+      const { data } = await customFetch.get(url);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -100,6 +105,10 @@ const allClassesSlice = createSlice({
       const { name, value } = payload;
       state[name] = value;
     },
+    handleClassesFilterInput: (state, { payload }) => {
+      const { name, value } = payload;
+      state[name] = value;
+    },
     showEditClass: (state, { payload }) => {
       const { name, status, createdDate, editClassId } = payload;
       return {
@@ -165,5 +174,6 @@ export const {
   handleAddClassInput,
   showAddClass,
   closeAddClass,
+  handleClassesFilterInput,
 } = allClassesSlice.actions;
 export default allClassesSlice.reducer;

@@ -3,14 +3,24 @@ import Wrapper from "../assets/wrappers/ClassesContainer";
 import Class from "./Class";
 import { useEffect } from "react";
 import { getAllClass } from "../features/allClass/allClassSlice";
+import Loading from "./Loading";
 const ClassesContainer = () => {
-  const { classes } = useSelector((store) => store.allClasses);
+  const { classes, search, isLoading } = useSelector(
+    (store) => store.allClasses
+  );
 
   const dispatch = useDispatch();
   // get all Classes
   useEffect(() => {
     dispatch(getAllClass());
-  }, []);
+  }, [search]);
+  if (isLoading) {
+    return (
+      <Wrapper>
+        <Loading center />
+      </Wrapper>
+    );
+  }
   if (classes.length === 0) {
     return (
       <Wrapper>

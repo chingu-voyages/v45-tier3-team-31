@@ -7,6 +7,7 @@ import ClassDetail from "./ClassDetail";
 import { useNavigate } from "react-router-dom";
 import { deleteClass, showEditClass } from "../features/allClass/allClassSlice";
 import { viewClass } from "../features/class/classSlice";
+import moment from "moment/moment";
 const Class = ({ name, status, date, students, id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const Class = ({ name, status, date, students, id }) => {
       </header>
       <div className="content">
         <div className="content-center">
-          <ClassDetail icon={<FaCalendarAlt />} text={date} />
+          <ClassDetail
+            icon={<FaCalendarAlt />}
+            text={moment(date).format("YYYY-MM-DD")}
+          />
           <ClassDetail
             icon={<PiStudent />}
             text={`${students.length} student${
