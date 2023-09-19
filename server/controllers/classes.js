@@ -2,8 +2,14 @@ const { StatusCodes } = require("http-status-codes");
 const Class = require("../models/classes");
 const { NotFound, BadRequest } = require("../errors");
 const Student = require("../models/students");
+const { Op } = require("sequelize");
 const getAllClasses = async (req, res) => {
-  const classes = await Class.findAll({ include: Student });
+  const { search } = req.query;
+  let queryObject = {};
+  if (search) {
+    queryObject.name = { [Op.iLike]: `%${search}%` };
+  }
+  const classes = await Class.findAll({ include: Student, where: queryObject });
   res
     .status(StatusCodes.OK)
     .json({ success: true, amount: classes.length, classes });
