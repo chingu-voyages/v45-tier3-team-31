@@ -22,6 +22,10 @@ const getSingleStudent = async (req, res) => {
   res.status(StatusCodes.OK).json({ success: true, student });
 };
 const createStudent = async (req, res) => {
+  if (req.body.length > 0) {
+    const students = await Student.bulkCreate([...req.body]);
+    res.status(StatusCodes.CREATED).json({ success: true, students });
+  }
   const student = await Student.create({ ...req.body });
   res.status(StatusCodes.CREATED).json({ success: true, student });
 };

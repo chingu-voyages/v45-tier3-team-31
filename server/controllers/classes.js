@@ -23,6 +23,10 @@ const getSingleClass = async (req, res) => {
   res.status(StatusCodes.OK).json({ success: true, aClass });
 };
 const createClass = async (req, res) => {
+  if (req.body.length > 0) {
+    const classes = await Class.bulkCreate(req.body);
+    return res.status(StatusCodes.CREATED).json({ success: true, classes });
+  }
   const aClass = await Class.create({ ...req.body });
   res.status(StatusCodes.CREATED).json({ success: true, aClass });
 };
