@@ -180,8 +180,7 @@ const classSlice = createSlice({
         state.full_name = full_name;
         state.address = address;
         state.parent_phone_number = parent_phone_number;
-        state.attended_date = attended_date;
-        state.studentId = id;
+        state.attended_date = moment(attended_date).format("YYYY-MM-DD");    state.studentId = id;
         state.isAddStudentOpen = true;
         state.isEditStudent = true;
 
