@@ -22,6 +22,7 @@ const AddStudent = () => {
     attended_date,
     parent_phone_number,
     isAddStudentOpen,
+    editClassId: classId,
   } = useSelector((store) => store.class);
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -29,9 +30,15 @@ const AddStudent = () => {
       handleAddStudentInput({ name: e.target.name, value: e.target.value })
     );
   };
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    dispatch(deleteStudent(studentId));
+    dispatch(closeAddStudent());
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!full_name || !address || !attended_date || parent_phone_number) {
+    if (!full_name || !address || !attended_date || !parent_phone_number) {
       return toast.error("Please fill all fields");
     }
     if (!isEditStudent) {
@@ -41,16 +48,23 @@ const AddStudent = () => {
           address,
           attended_date,
           parent_phone_number,
+          classId,
         })
       );
     }
-    if (!isEditStudent) {
+    if (!isEditStudent && !studentId) {
       return toast.error("No student Id to update");
     }
     return dispatch(
       updateStudent({
         studentId,
-        aClass: { full_name, address, attended_date, parent_phone_number },
+        student: {
+          full_name,
+          address,
+          attended_date,
+          parent_phone_number,
+          classId,
+        },
       })
     );
   };
@@ -109,21 +123,25 @@ const AddStudent = () => {
           >
             <FaTimes />{" "}
           </button>
+          <div className="actions">
+            <button
+              type="submit"
+              className="btn-block btn"
+              onClick={handleSubmit}
+            >
+              Save
+            </button>
 
-          <button
-            type="submit"
-            className="btn-block btn"
-            onClick={handleSubmit}
-          >
-            Save
-          </button>
-          <button
-            type="submit"
-            className="btn-block btn"
-            onClick={() => dispatch(deleteStudent(studentId))}
-          >
-            Save
-          </button>
+            {isEditStudent && (
+              <button
+                type="submit"
+                className="btn-block btn btn-danger"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </Wrapper>

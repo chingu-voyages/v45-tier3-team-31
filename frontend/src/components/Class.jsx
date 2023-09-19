@@ -12,7 +12,7 @@ const Class = ({ name, status, date, students, id }) => {
   const dispatch = useDispatch();
   const handleView = () => {
     dispatch(viewClass(id));
-    navigate("/attendance");
+    navigate("/students");
   };
 
   return (

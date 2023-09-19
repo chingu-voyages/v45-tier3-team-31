@@ -35,13 +35,24 @@ export const getSingleClass = createAsyncThunk(
     }
   }
 );
+export const getSingleStudent = createAsyncThunk(
+  "class/singleStudent",
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await customFetch.get(`students/${id}`);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+  }
+);
 export const addNewStudent = createAsyncThunk(
-  "allClasses/newStudent",
+  "class/newStudent",
   async (student, thunkAPI) => {
     try {
       const { data } = await customFetch.post("students", student);
       thunkAPI.dispatch(closeAddStudent());
-      // thunkAPI.dispatch(getAllClass());
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -49,15 +60,18 @@ export const addNewStudent = createAsyncThunk(
   }
 );
 export const updateStudent = createAsyncThunk(
-  "allClasses/updateStudent",
+  "class/updateStudent",
   async (payload, thunkAPI) => {
     const { studentId, student } = payload;
     console.log(payload);
     console.log(student);
     try {
-      const { data } = await customFetch.patch(`student/${studentId}`, student);
+      const { data } = await customFetch.patch(
+        `students/${studentId}`,
+        student
+      );
       thunkAPI.dispatch(closeAddStudent());
-      // thunkAPI.dispatch(getAllClass());
+
       return data.msg;
     } catch (error) {
       console.log(error);
@@ -66,11 +80,11 @@ export const updateStudent = createAsyncThunk(
   }
 );
 export const deleteStudent = createAsyncThunk(
-  "allClasses/deleteClass",
+  "class/deleteStudent",
   async (id, thunkAPI) => {
     try {
       const { data } = await customFetch.delete(`students/${id}`);
-      // thunkAPI.dispatch(getAllClass());
+
       return data.msg;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -101,18 +115,6 @@ const classSlice = createSlice({
       const { name, value } = payload;
       state[name] = value;
     },
-    showEditClass: (state, { payload }) => {
-      const { full_name, address, attended_date, studentId } = payload;
-      return {
-        ...state,
-        full_name,
-        address,
-        attended_date,
-        studentId,
-        isAddStudentOpen: true,
-        isEditStudent: true,
-      };
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -139,7 +141,7 @@ const classSlice = createSlice({
       })
       .addCase(addNewStudent.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        toast.success(`New Class Added`);
+        toast.success(`New Student Added`);
       })
       .addCase(addNewStudent.rejected, (state, { payload }) => {
         state.isLoading = false;
@@ -166,13 +168,35 @@ const classSlice = createSlice({
       .addCase(deleteStudent.rejected, (state, { payload }) => {
         state.isLoading = false;
         toast.error(payload);
+      })
+      .addCase(getSingleStudent.pending, (state, { payload }) => {
+        state.isLoading = true;
+      })
+      .addCase(getSingleStudent.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        const { id, full_name, address, parent_phone_number, attended_date } =
+          payload.student;
+        console.log(payload);
+        state.full_name = full_name;
+        state.address = address;
+        state.parent_phone_number = parent_phone_number;
+        state.attended_date = attended_date;
+        state.studentId = id;
+        state.isAddStudentOpen = true;
+        state.isEditStudent = true;
+
+        // toast.success(payload);
+      })
+      .addCase(getSingleStudent.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
       });
   },
 });
 export const {
   viewClass,
   showAddStudent,
-  showEditClass,
+
   handleAddStudentInput,
   closeAddStudent,
 } = classSlice.actions;

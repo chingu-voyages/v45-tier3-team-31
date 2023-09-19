@@ -59,6 +59,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     color: var(--red-dark);
   }
+
   @media (min-width: 768px) {
     .form-center {
       grid-template-columns: 1fr 1fr;
@@ -67,6 +68,12 @@ const Wrapper = styled.div`
   @media (min-width: 992px) {
     .form-center {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 4rem;
     }
   }
 `;

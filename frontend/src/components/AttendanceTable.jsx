@@ -1,19 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
 import Wrapper from "../assets/wrappers/Table";
 import { capitalizeSentence } from "../utils/methods";
-import { BsPencilSquare } from "react-icons/bs";
+
 import { useEffect } from "react";
 import { getSingleClass } from "../features/class/classSlice";
+import Student from "./Student";
 const AttendanceTable = () => {
   const dispatch = useDispatch();
-  const { students, editClassId } = useSelector((store) => store.class);
+  const { students, editClassId, isAddStudentOpen } = useSelector(
+    (store) => store.class
+  );
 
   // Get Class Info and students
   useEffect(() => {
     if (editClassId) {
       dispatch(getSingleClass(editClassId));
     }
-  }, [editClassId]);
+  }, [editClassId, isAddStudentOpen]);
 
   if (students.length === 0) {
     return (
@@ -47,20 +50,9 @@ const AttendanceTable = () => {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row, rowIndex) => {
-                console.log();
-                return (
-                  <tr key={rowIndex}>
-                    <button type="button" className="edit-btn btn">
-                      <BsPencilSquare />
-                    </button>
-                    <td>{rowIndex + 1}</td>
-                    {row.map((col, colId) => (
-                      <td key={colId}>{col}</td>
-                    ))}
-                  </tr>
-                );
-              })}
+              {students.map((student, rowIndex) => (
+                <Student key={rowIndex} student={student} rowIndex={rowIndex} />
+              ))}
             </tbody>
           </table>
         </div>

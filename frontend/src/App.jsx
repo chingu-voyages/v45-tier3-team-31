@@ -24,7 +24,7 @@ function App() {
           }
         >
           <Route index element={<Classes />} />
-          <Route path="attendance" element={<Attendance />} />
+          <Route path="students" element={<Attendance />} />
           <Route path="homework" element={<Homework />} />
         </Route>
         <Route path="landing" element={<Landing />} />

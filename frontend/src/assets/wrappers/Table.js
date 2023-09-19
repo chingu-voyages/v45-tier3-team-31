@@ -13,19 +13,20 @@ const Wrapper = styled.div`
     color: var(--primary-50);
   }
 
-  table {
+  tr {
     position: relative;
   }
   .edit-btn {
     position: absolute;
     left: 0;
-
+    display: none;
     top: 0;
     transform: translateX(-100%) scale(0);
     transition: var(--transition);
   }
   tr:hover .edit-btn {
     transform: translateX(-100%) scale(1);
+    display: inline;
   }
   th {
     border-radius: var(--borderRadius);
