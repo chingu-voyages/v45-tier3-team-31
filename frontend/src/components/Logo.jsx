@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     height: 100px;
   }
   p {
-    color: #3b82f6;
+    color: var(--primary-500);
     font-size: 1.4rem;
     font-weight: 700;
   }
